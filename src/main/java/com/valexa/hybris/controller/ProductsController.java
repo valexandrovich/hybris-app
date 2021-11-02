@@ -43,7 +43,8 @@ public class ProductsController extends HttpServlet {
         product.setStatus(req.getParameter("status"));
         product.setCreatedAt(new Date());
 
-        productDao.save(product);
+        int newId = productDao.save(product);
+        System.out.println("New product ID: " + newId);
 
         resp.sendRedirect("products");
 

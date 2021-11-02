@@ -1,15 +1,26 @@
 package com.valexa.hybris.model;
 
+import com.sun.tools.javac.jvm.Items;
+
 import java.util.Date;
+import java.util.List;
 
 public class Order {
     private int id;
     private int userId;
     private String status;
     private Date createdAt;
+    private List<OrderItem> items;
 
-    public Order(int id) {
-        this.id = id;
+    public List<OrderItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<OrderItem> items) {
+        this.items = items;
+    }
+
+    public Order() {
     }
 
     public int getId() {

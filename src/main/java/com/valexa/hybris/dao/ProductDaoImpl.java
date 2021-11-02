@@ -3,10 +3,7 @@ package com.valexa.hybris.dao;
 import com.valexa.hybris.config.MySqlConnector;
 import com.valexa.hybris.model.Product;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,24 +27,27 @@ public class ProductDaoImpl implements ProductDao{
     }
 
     @Override
-    public void save(Product product) {
+    public int save(Product product) {
         try {
             Connection con = MySqlConnector.getConnection();
-            Statement st = con.createStatement();
             String insertQuery = "INSERT INTO products (name, status, price, createdAt) values ('" +
                     product.getName() + "', '" +
                     product.getStatus() + "', " +
                     product.getPrice() + ", '" +
                     simpleDateFormat.format(product.getCreatedAt()) +
                     "')";
-
-            st.execute(insertQuery);
+            Statement st = con.createStatement();
+            st.executeUpdate(insertQuery, Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = st.getGeneratedKeys();
+            if (rs.next() && rs != null){
+                return rs.getInt(1);
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+                e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
+        return -1;
     }
 
     @Override

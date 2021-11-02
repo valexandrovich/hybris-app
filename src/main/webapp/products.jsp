@@ -21,8 +21,8 @@
 <form action="products" method="post">
     <label for="name">Product Name:</label>
     <input type="text" name="name" id="name">
-    <label for="productStatus">Product Status</label>
-    <select name="productStatus" id="productStatus">
+    <label for="status">Product Status</label>
+    <select name="status" id="status">
         <c:forEach var="ps" items="${productsStatuses}">
             <option>${ps}</option>
         </c:forEach>

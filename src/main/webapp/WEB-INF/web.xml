@@ -12,6 +12,7 @@
         <servlet-name>Index</servlet-name>
         <url-pattern></url-pattern>
     </servlet-mapping>
+
     
     <servlet>
         <servlet-name>Products</servlet-name>
@@ -20,6 +21,15 @@
     <servlet-mapping>
         <servlet-name>Products</servlet-name>
         <url-pattern>/products</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>Order</servlet-name>
+        <servlet-class>com.valexa.hybris.controller.OrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Order</servlet-name>
+        <url-pattern>/order</url-pattern>
     </servlet-mapping>
 
 
